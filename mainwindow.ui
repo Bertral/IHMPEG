@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>524</width>
-    <height>437</height>
+    <width>582</width>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,13 +23,19 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="3">
         <widget class="QPushButton" name="browseInput">
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="text">
           <string>Browse</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0" colspan="4">
-        <widget class="QTextBrowser" name="textBrowser">
+        <widget class="QTextBrowser" name="videoInfo">
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -67,6 +73,9 @@ p, li { white-space: pre-wrap; }
        <string>Output video</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="4">
+        <widget class="QTimeEdit" name="stopTime"/>
+       </item>
        <item row="0" column="5">
         <widget class="QPushButton" name="browseOutput">
          <property name="text">
@@ -81,18 +90,8 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Start from </string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="2">
-        <widget class="QTimeEdit" name="timeEdit_2"/>
+        <widget class="QTimeEdit" name="startTime"/>
        </item>
        <item row="1" column="3">
         <widget class="QLabel" name="label_2">
@@ -104,8 +103,38 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
-        <widget class="QTimeEdit" name="timeEdit"/>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Start from </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+       <string>Corresponding command line</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="resultCmd">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="execCmd">
+         <property name="text">
+          <string>Execute</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -117,7 +146,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>524</width>
+     <width>582</width>
      <height>23</height>
     </rect>
    </property>
@@ -142,6 +171,17 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>inputFileName</tabstop>
+  <tabstop>browseInput</tabstop>
+  <tabstop>videoInfo</tabstop>
+  <tabstop>outputFileName</tabstop>
+  <tabstop>browseOutput</tabstop>
+  <tabstop>startTime</tabstop>
+  <tabstop>stopTime</tabstop>
+  <tabstop>resultCmd</tabstop>
+  <tabstop>execCmd</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
