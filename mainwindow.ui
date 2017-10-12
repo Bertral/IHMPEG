@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>472</height>
+    <width>522</width>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>IHMPEG</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -21,20 +21,17 @@
        <string>Input video</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="3">
-        <widget class="QPushButton" name="browseInput">
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Browse</string>
+          <string>Duration :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="4">
+       <item row="2" column="0" colspan="5">
         <widget class="QTextBrowser" name="videoInfo">
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -45,7 +42,20 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="3">
+       <item row="0" column="4">
+        <widget class="QPushButton" name="browseInput">
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Browse ...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="4">
         <widget class="QLineEdit" name="inputFileName">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -64,6 +74,13 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="durationLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -73,33 +90,33 @@ p, li { white-space: pre-wrap; }
        <string>Output video</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="4">
-        <widget class="QTimeEdit" name="stopTime"/>
-       </item>
-       <item row="0" column="5">
-        <widget class="QPushButton" name="browseOutput">
-         <property name="text">
-          <string>Browse</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="4">
-        <widget class="QLineEdit" name="outputFileName">
-         <property name="placeholderText">
-          <string>Select output file and directory ...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QTimeEdit" name="startTime"/>
-       </item>
        <item row="1" column="3">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Stop at</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QTimeEdit" name="startTime">
+         <property name="currentSection">
+          <enum>QDateTimeEdit::SecondSection</enum>
+         </property>
+         <property name="displayFormat">
+          <string>HH:mm:ss.zzz</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QTimeEdit" name="stopTime">
+         <property name="currentSection">
+          <enum>QDateTimeEdit::SecondSection</enum>
+         </property>
+         <property name="displayFormat">
+          <string>HH:mm:ss.zzz</string>
          </property>
         </widget>
        </item>
@@ -109,7 +126,21 @@ p, li { white-space: pre-wrap; }
           <string>Start from </string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="browseOutput">
+         <property name="text">
+          <string>Browse ...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="4">
+        <widget class="QLineEdit" name="outputFileName">
+         <property name="placeholderText">
+          <string>Select output file ...</string>
          </property>
         </widget>
        </item>
@@ -124,8 +155,14 @@ p, li { white-space: pre-wrap; }
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLineEdit" name="resultCmd">
+         <property name="text">
+          <string/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Missing input or output, or duration invalid</string>
          </property>
         </widget>
        </item>
@@ -146,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>582</width>
+     <width>522</width>
      <height>23</height>
     </rect>
    </property>
@@ -166,7 +203,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionClose_2">
    <property name="text">
-    <string>Close</string>
+    <string>&amp;Close</string>
    </property>
   </action>
  </widget>
