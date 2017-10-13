@@ -103,7 +103,7 @@ p, li { white-space: pre-wrap; }
        <item row="1" column="2">
         <widget class="QTimeEdit" name="startTime">
          <property name="currentSection">
-          <enum>QDateTimeEdit::SecondSection</enum>
+          <enum>QDateTimeEdit::HourSection</enum>
          </property>
          <property name="displayFormat">
           <string>HH:mm:ss.zzz</string>
@@ -113,7 +113,7 @@ p, li { white-space: pre-wrap; }
        <item row="1" column="4">
         <widget class="QTimeEdit" name="stopTime">
          <property name="currentSection">
-          <enum>QDateTimeEdit::SecondSection</enum>
+          <enum>QDateTimeEdit::HourSection</enum>
          </property>
          <property name="displayFormat">
           <string>HH:mm:ss.zzz</string>
@@ -187,13 +187,13 @@ p, li { white-space: pre-wrap; }
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTEST">
+   <widget class="QMenu" name="fileMenu">
     <property name="title">
-     <string>Fi&amp;le</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionClose_2"/>
    </widget>
-   <addaction name="menuTEST"/>
+   <addaction name="fileMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionClose">
@@ -204,6 +204,9 @@ p, li { white-space: pre-wrap; }
   <action name="actionClose_2">
    <property name="text">
     <string>&amp;Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Q</string>
    </property>
   </action>
  </widget>

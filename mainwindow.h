@@ -34,6 +34,7 @@ private slots:
     void on_execCmd_clicked();
 
 private:
+    const QString TIME_FORMAT = "H:mm:ss.zzz";
     Ui::MainWindow *ui;
     bool validInput = false;
     bool validOutput = false;

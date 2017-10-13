@@ -27,13 +27,17 @@ void MainWindow::on_inputFileName_textChanged(const QString &input) {
         QString out = exec("ffprobe -pretty -hide_banner -show_streams \"" +
                            file.absoluteFilePath() + "\"");
         ui->videoInfo->setText(out);
-        out.remove(0, out.indexOf("duration=") + 9).truncate(out.indexOf("\n"));
+        out.remove(0, out.indexOf("duration=") + 9)
+            .truncate(out.indexOf("\n") - 3);
         ui->durationLabel->setText(out);
 
         // ffprobe vérifie s'il s'agit d'une vidéo
         validInput = out != "";
-        if(!validInput) {
+        if (!validInput) {
             ui->durationLabel->setText("Not a video file");
+        } else {
+            ui->stopTime->setTime(
+                QTime::fromString(ui->durationLabel->text(), TIME_FORMAT));
         }
     } else {
         ui->videoInfo->setText("");
@@ -47,19 +51,32 @@ void MainWindow::on_inputFileName_textChanged(const QString &input) {
 void MainWindow::updateResult() {
     // les fichiers d'input et output, ainsi que les temps de début et de fin
     // sont vérifiés
-    if (validInput && validOutput &&
-        ui->startTime->time().msecsTo(ui->stopTime->time()) > 0) {
+    QTime duration = QTime::fromString(ui->durationLabel->text(), TIME_FORMAT);
+
+    if (!validInput) {
+        ui->resultCmd->setText("");
+        ui->resultCmd->setPlaceholderText("Invalid input file");
+    } else if (!validOutput) {
+        ui->resultCmd->setText("");
+        ui->resultCmd->setPlaceholderText("Invalid output file");
+    } else if (ui->startTime->time().msecsTo(ui->stopTime->time()) <= 0) {
+        ui->resultCmd->setText("");
+        ui->resultCmd->setPlaceholderText("Output video must start before it stops");
+    } else if (ui->startTime->time().msecsTo(duration) < 0) {
+        ui->resultCmd->setText("");
+        ui->resultCmd->setPlaceholderText("Start time greater than duration");
+    } else if (ui->stopTime->time().msecsTo(duration) < 0) {
+        ui->resultCmd->setText("");
+        ui->resultCmd->setPlaceholderText("Stop time greater than duration");
+    } else {
         int offsetMs = ui->startTime->time().msecsTo(ui->stopTime->time());
-        QTime zero(0, 0);
 
         ui->resultCmd->setText(
             "ffmpeg -i \"" + ui->inputFileName->text() + "\" -ss " +
-            ui->startTime->time().toString("HH:mm:ss.zzz") + " -t " +
-            zero.addMSecs(offsetMs).toString("HH:mm:ss.zzz") +
+            ui->startTime->time().toString(TIME_FORMAT) + " -t " +
+            QTime::fromMSecsSinceStartOfDay(offsetMs).toString(TIME_FORMAT) +
             " -acodec copy -vcodec copy -y \"" + ui->outputFileName->text() +
             "\"");
-    } else {
-        ui->resultCmd->setText("");
     }
 }
 
