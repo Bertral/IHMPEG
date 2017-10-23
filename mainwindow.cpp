@@ -40,7 +40,8 @@ void MainWindow::on_inputFileName_textChanged(const QString &input) {
         // si ffprobe ne renvoie rien, ce n'est pas une vidéo
         validInput = out != "";
         if (!validInput) {
-            ui->durationLabel->setText("Not a video file");
+            ui->videoInfo->setText("<b>Not a video file</b>");
+            ui->durationLabel->setText("");
         } else {
             // règle la fin de la vidéo en output à la durée de l'input
             ui->stopTime->setTime(
@@ -48,8 +49,8 @@ void MainWindow::on_inputFileName_textChanged(const QString &input) {
         }
     } else {
         // si le fichier n'existe pas, on affiche un message d'erreur
-        ui->videoInfo->setText("");
-        ui->durationLabel->setText("File not found");
+        ui->videoInfo->setText("<b>File not found</b>");
+        ui->durationLabel->setText("");
         validInput = false;
     }
 
@@ -71,12 +72,10 @@ void MainWindow::updateResult() {
         ui->resultCmd->setText("");
         ui->resultCmd->setPlaceholderText(
             "Output video must start before it stops");
-    } else if (ui->startTime->time().msecsTo(duration) < 0) {
-        ui->resultCmd->setText("");
-        ui->resultCmd->setPlaceholderText("Start time greater than duration");
     } else if (ui->stopTime->time().msecsTo(duration) < 0) {
         ui->resultCmd->setText("");
-        ui->resultCmd->setPlaceholderText("Stop time greater than duration");
+        ui->resultCmd->setPlaceholderText(
+            "Stop time is greater than source duration");
     } else {
         // les paramètres sont corrects => compile la ligne de commande
         int offsetMs = ui->startTime->time().msecsTo(ui->stopTime->time());
@@ -139,5 +138,9 @@ void MainWindow::on_execCmd_clicked() {
         QMessageBox done;
         done.setText("Done !");
         done.exec();
+    } else {
+        QMessageBox err;
+        err.setText(ui->resultCmd->placeholderText());
+        err.exec();
     }
 }
