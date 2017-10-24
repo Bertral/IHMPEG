@@ -67,7 +67,7 @@ void MainWindow::updateResult() {
         ui->resultCmd->setPlaceholderText("Invalid input file");
     } else if (!validOutput) {
         ui->resultCmd->setText("");
-        ui->resultCmd->setPlaceholderText("Invalid output file");
+        ui->resultCmd->setPlaceholderText("Invalid output file path");
     } else if (ui->startTime->time().msecsTo(ui->stopTime->time()) <= 0) {
         ui->resultCmd->setText("");
         ui->resultCmd->setPlaceholderText(
