@@ -118,12 +118,12 @@ void MainWindow::on_outputFileName_textChanged(const QString &output) {
     updateResult();
 }
 
-void MainWindow::on_stopTime_timeChanged(const QTime &time) {
+void MainWindow::on_stopTime_timeChanged() {
     // mise à jour de la ligne de commande résultante
     updateResult();
 }
 
-void MainWindow::on_startTime_timeChanged(const QTime &time) {
+void MainWindow::on_startTime_timeChanged() {
     // mise à jour de la ligne de commande résultante
     updateResult();
 }

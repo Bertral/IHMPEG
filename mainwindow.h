@@ -26,9 +26,9 @@ class MainWindow : public QMainWindow {
 
     void on_outputFileName_textChanged(const QString &arg1);
 
-    void on_stopTime_timeChanged(const QTime &time);
+    void on_stopTime_timeChanged();
 
-    void on_startTime_timeChanged(const QTime &time);
+    void on_startTime_timeChanged();
 
     void on_execCmd_clicked();
 
